@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>하루면 만들 것 같은 바이브코딩 앱들</title>
+<meta name="description" content="생활 속 작은 불편을 바이브코딩으로 풀어낸 웹앱 모음">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root { --ink:#111; --sub:#8a8a8a; --line:#ececec; --tile:#f4f4f2; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif; color:var(--ink); background:#fff; -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  header.top { display:flex; justify-content:space-between; align-items:center; padding:22px 40px; border-bottom:1px solid var(--line); font-size:14px; }
+  header.top .logo { font-weight:700; letter-spacing:-0.02em; }
+  header.top .note { color:var(--sub); }
+  .hero { text-align:center; padding:72px 24px 36px; }
+  .hero .kicker { color:var(--sub); font-size:14px; margin-bottom:14px; }
+  .hero h1 { font-size:clamp(30px,4.4vw,52px); line-height:1.15; letter-spacing:-0.035em; margin:0 auto 18px; max-width:880px; font-weight:700; }
+  .hero p { color:#555; font-size:16px; line-height:1.6; max-width:620px; margin:0 auto; }
+  .bar { position:sticky; top:0; z-index:5; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  .bar-in { max-width:1320px; margin:0 auto; padding:14px 40px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:8px 15px; font-size:14px; cursor:pointer; font-family:inherit; color:#333; }
+  .chip.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .bar .right { margin-left:auto; display:flex; gap:14px; align-items:center; font-size:13px; color:var(--sub); }
+  .bar label { display:flex; gap:6px; align-items:center; cursor:pointer; }
+  main { max-width:1320px; margin:0 auto; padding:34px 40px 80px; }
+  .grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:44px 26px; }
+  @media (max-width:1100px){ .grid{ grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:780px){ .grid{ grid-template-columns:repeat(2,1fr); gap:32px 16px;} main,.bar-in{padding-left:18px;padding-right:18px;} header.top{padding:18px;} }
+  @media (max-width:480px){ .grid{ grid-template-columns:1fr;} }
+  .card { display:block; }
+  .thumb { position:relative; aspect-ratio:4/3; background:var(--tile); border-radius:14px; overflow:hidden; }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease; }
+  .card:hover .thumb img { transform:scale(1.025); }
+  .badge { position:absolute; top:12px; left:12px; background:#fff; border-radius:999px; padding:5px 11px; font-size:12px; font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+  .kind { position:absolute; bottom:12px; right:12px; background:rgba(17,17,17,.78); color:#fff; border-radius:999px; padding:4px 10px; font-size:11.5px; }
+  .meta { margin-top:14px; font-size:13px; color:var(--sub); }
+  .meta b { color:#444; font-weight:500; }
+  .name { margin-top:5px; font-size:17px; font-weight:700; letter-spacing:-0.02em; }
+  .desc { margin-top:6px; font-size:14px; line-height:1.55; color:#444; }
+  .links { margin-top:9px; font-size:13px; display:flex; gap:14px; }
+  .links a { color:#111; border-bottom:1px solid #cfcfcf; padding-bottom:1px; }
+  .links a.src { color:var(--sub); border-color:#e3e3e3; }
+  footer { border-top:1px solid var(--line); color:var(--sub); font-size:13px; line-height:1.7; padding:28px 40px 48px; max-width:1320px; margin:0 auto; }
+  .hide { display:none; }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="logo">Vibe Supply</div>
+  <div class="note">바이브코딩 수업 참고 갤러리 · 2026.10</div>
+</header>
+
+<section class="hero">
+  <div class="kicker">불편한 걸 하나 골라서, 하루 만에</div>
+  <h1>이 정도면 나도 만들 수 있겠다 싶은<br>바이브코딩 앱 <span id="count">29</span>개</h1>
+  <p>낚시하다 금어기가 궁금했던 아저씨, 둘이 쓸 가계부가 필요했던 커플, 점심 메뉴를 못 고르던 사람들이 AI와 같이 만든 작은 앱들입니다. 카드를 누르면 바로 써볼 수 있어요.</p>
+</section>
+
+<div class="bar"><div class="bar-in" id="chips">
+  <button class="chip on" data-f="all">전체</button>
+  <button class="chip" data-f="food">먹고 놀기</button>
+  <button class="chip" data-f="people">약속·사람</button>
+  <button class="chip" data-f="money">돈·정산</button>
+  <button class="chip" data-f="town">동네·공공데이터</button>
+  <button class="chip" data-f="tool">정리·도구</button>
+  <button class="chip" data-f="diary">기록·일기</button>
+  <button class="chip" data-f="auto">알림·자동화</button>
+  <div class="right">
+    <label><input type="checkbox" id="webonly"> 웹에서 바로 되는 것만</label>
+    <label><input type="checkbox" id="playall"> 전부 움직이기</label>
+  </div>
+</div></div>
+
+<main><div class="grid" id="grid"></div></main>
+
+<footer>
+  링크와 화면은 2026년 10월 23일에 직접 열어서 확인했습니다. 움직이는 썸네일은 실제 사이트를 조작하며 녹화한 것이고, 앱으로만 있는 것은 앱스토어 스크린샷을 이어 붙였습니다. 여정 썸네일 일부는 만든 사람이 스레드에 올린 화면입니다.<br>
+  "바이브코딩으로 만들었다"는 근거는 만든 사람 본인의 글이나 바이브코딩 작품 모음 사이트(바사팔, 바이브마트, vibecodedapps.dev)의 소개입니다. 각 카드의 "출처"에서 볼 수 있습니다. One Year와 DOOD는 아이디어 참고용으로 넣었고, AI로 만들었는지는 확인하지 못했습니다.
+</footer>
+
+<script>
+const APPS = [
+  {id:'whatfiskok', name:'이거 잡아도 돼?', maker:'webapp_daddy', cat:'food', catName:'먹고 놀기', kind:'웹', pick:true,
+   desc:'낚시하다 잡은 고기의 금어기와 금지체장을 바로 알려줘요. 코딩을 모르던 50대 낚시인이 직접 만들었어요.',
+   url:'https://whatfiskok.vercel.app', src:'https://www.threads.com/@unnnyong/post/DbnFzxikoF_'},
+  {id:'pick', name:'오늘 뭐 먹지', maker:'바이브마트 · Claude Code', cat:'food', catName:'먹고 놀기', kind:'웹', pick:true,
+   desc:'음식 754가지에서 뽑고, 후보가 있으면 룰렛으로 정해요. 결과가 싫으면 먹고 싶은 게 따로 있다는 뜻이래요.',
+   url:'https://vibemart.kr/pick.html', src:'https://vibemart.kr/about.html'},
+  {id:'boombim', name:'지하철 붐빔예보', maker:'bridge_node_', cat:'town', catName:'동네·공공데이터', kind:'웹', pick:true,
+   desc:'역을 고르면 30분 단위로 얼마나 붐빌지 보여줘요. 서울교통공사 공공데이터에 날씨를 더해 예측해요.',
+   url:'https://subway-boombim.vercel.app/', src:'https://www.threads.com/@bridge_node_/post/DeMGiAaCbeB'},
+  {id:'ufree', name:'ufree', maker:'bymarumade · Claude Code', cat:'people', catName:'약속·사람', kind:'웹', pick:true,
+   desc:'단톡방에 링크 하나만 보내면 다 같이 되는 시간을 찾아줘요. 로그인도 설치도 없어요.',
+   url:'https://ufree.kr/', src:'https://basapal.kr/apps/b037d3bc-83ea-4d74-988f-5c8a44f4d9f6'},
+  {id:'cleaneats', name:'청정식당', maker:'바이브마트 · Claude Code', cat:'town', catName:'동네·공공데이터', kind:'웹',
+   desc:'배달 시키기 전에 가게 이름이나 동네로 식약처 위생등급 지정 여부를 찾아봐요. 공공데이터를 그대로 보여줘요.',
+   url:'https://vibemart.kr/cleaneats.html', src:'https://vibemart.kr/about.html'},
+  {id:'subcalc', name:'구독료 계산기', maker:'바이브마트 · Claude Code', cat:'money', catName:'돈·정산', kind:'웹',
+   desc:'넷플릭스, 쿠팡 와우, ChatGPT를 누르다 보면 1년 총액이 나와요. 결제일 알림을 폰 캘린더에 넣을 수도 있어요.',
+   url:'https://vibemart.kr/subcalc.html', src:'https://vibemart.kr/about.html'},
+  {id:'splitpeak', name:'split peak', maker:'John Kim · Claude Code', cat:'money', catName:'돈·정산', kind:'웹', pick:true,
+   desc:'여행이나 룸메이트 사이의 돈을 한 번에 정산해요. 통화가 섞여도 되고, 샘플 여행으로 바로 체험할 수 있어요.',
+   url:'https://www.splitpeak.me/', src:'https://basapal.kr/apps/3a09d8dd-d0d1-4896-b6e1-23e64e0cff00'},
+  {id:'chalkak', name:'한집가계부', maker:'hanjip_budget', cat:'money', catName:'돈·정산', kind:'앱',
+   desc:'동거 중인 예비 신혼부부가 둘이 쓰려고 만든 가계부예요. 초대코드 하나로 둘이 같은 가계부를 쓰고, 한 달 동안 직접 쓰면서 다듬었대요.',
+   url:'https://apps.apple.com/kr/app/id6808564806', linkLabel:'앱스토어', src:'https://www.threads.com/@hanjip_budget'},
+  {id:'yeojeong', name:'여정', maker:'yeojeong.official', cat:'people', catName:'약속·사람', kind:'웹',
+   desc:'친구들과 여행 날짜를 맞추고 숙소와 놀거리를 다 같이 투표해서 정해요.',
+   url:'https://yeojeong.co.kr', src:'https://www.threads.com/@unnnyong/post/DbnFzxikoF_'},
+  {id:'toilet', name:'우리 동네 화장실', maker:'바이브마트 · Claude Code', cat:'town', catName:'동네·공공데이터', kind:'웹',
+   desc:'전국 공중화장실 5만여 곳의 개방시간, 기저귀 교환대, 비상벨 정보를 동네별로 찾아줘요.',
+   url:'https://vibemart.kr/toilet.html', src:'https://vibemart.kr/about.html'},
+  {id:'nori', name:'노리', maker:'오지우 · Claude Code', cat:'people', catName:'약속·사람', kind:'웹',
+   desc:'바다 건너 일본의 누군가와 하루 세 번 엽서를 주고받아요. 사진 한 장과 한 줄이면 돼요.',
+   url:'https://noriapp-web.pages.dev/', src:'https://basapal.kr/apps/3c1b04b6-6907-4be1-82aa-b1d131cba0e9'},
+  {id:'byeol', name:'곁별', maker:'LUCA MOON · Claude Code', cat:'people', catName:'약속·사람', kind:'웹',
+   desc:'생일을 넣으면 내 오행 정령이 나오고, 곁에 있는 사람들이 별자리처럼 떠요.',
+   url:'https://vaulted-bus-346411.web.app/byeol', src:'https://basapal.kr/apps/2482a0eb-183b-45e0-9585-5df5bf3152cc'},
+  {id:'tastee', name:'TASTEE', maker:'tastee.app', cat:'food', catName:'먹고 놀기', kind:'앱',
+   desc:'가본 식당을 "A vs B, 어디가 더 좋았어?" 이상형 월드컵처럼 고르기만 하면 나만의 맛집 순위가 매겨져요.',
+   url:'https://apps.apple.com/kr/app/id6756393828', linkLabel:'앱스토어', src:'https://www.threads.com/@tastee.app'},
+  {id:'menugen', name:'MenuGen', maker:'Andrej Karpathy', cat:'food', catName:'먹고 놀기', kind:'웹',
+   desc:'메뉴판 사진을 올리면 메뉴마다 음식 그림을 붙여줘요. 외국 식당에서 뭘 시킬지 모를 때 쓰려고 만들었어요.',
+   url:'https://www.menugen.app/', src:'https://karpathy.bearblog.dev/vibe-coding-menugen/', srcLabel:'제작기'},
+  {id:'memekbd', name:'밈키', maker:'subway.lab', cat:'tool', catName:'정리·도구', kind:'앱',
+   desc:'자주 쓰는 밈 이미지와 문구를 저장해 두고, 사진첩을 뒤지지 않고 키보드에서 바로 꺼내 써요.',
+   url:'https://apps.apple.com/kr/app/id6781259257', linkLabel:'앱스토어', src:'https://www.threads.com/@subway.lab/post/DbnH2ITGGYj'},
+  {id:'stash', name:'STASH', maker:'easyticket.co.kr', cat:'tool', catName:'정리·도구', kind:'앱',
+   desc:'쌓여 있는 링크, 스크린샷, 가고 싶은 장소를 카드처럼 스와이프해서 정리해요. 가입이 없어요.',
+   url:'https://apps.apple.com/kr/app/id6812354250', linkLabel:'앱스토어', src:'https://www.threads.com/@easyticket.co.kr/post/DeMF4HdHZMI'},
+  {id:'livenote', name:'라이브노트', maker:'dev.livenote', cat:'tool', catName:'정리·도구', kind:'앱',
+   desc:'적어두고 잊어버리는 메모를 잠금화면과 다이내믹 아일랜드에 띄워줘요. 폰을 켤 때마다 보여요.',
+   url:'https://apps.apple.com/kr/app/id6756247075', linkLabel:'앱스토어', src:'https://www.threads.com/@dev.livenote/post/DbnJn-sIFp0'},
+  {id:'focus', name:'함께 집중해요', maker:'superlob_com', cat:'tool', catName:'정리·도구', kind:'앱',
+   desc:'공부하는 동안 내 3D 캐릭터가 풍경 속을 걸어요. 같이 집중하는 사람을 만나면 나란히 걷기도 해요.',
+   url:'https://apps.apple.com/kr/app/id6773755433', linkLabel:'앱스토어', src:'https://www.threads.com/@superlob_com/post/Dd3wyufktZo'},
+  {id:'memory', name:'me:mory', maker:'yongjae.builds', cat:'people', catName:'약속·사람', kind:'앱',
+   desc:'새우 알레르기, 갖고 싶다던 카드지갑처럼 그 사람에 대해 적어두면, 약속 날 만나기 전에 먼저 꺼내줘요.',
+   url:'https://apps.apple.com/kr/app/id6790031020', linkLabel:'앱스토어', src:'https://www.threads.com/@yongjae.builds/post/DbnJ8_pgXny'},
+  {id:'oneyear', name:'One Year: Daily Journal', maker:'Wind Down Studio', cat:'diary', catName:'기록·일기', kind:'앱',
+   desc:'하루에 기억 하나를 적으면 손으로 그린 식물이 하나씩 자라서, 1년이 지나면 기억의 정원이 돼요.',
+   url:'https://apps.apple.com/kr/app/id6740510762', linkLabel:'앱스토어', src:'https://oneyear.garden/', srcLabel:'홈페이지'},
+  {id:'dood', name:'DOOD', maker:'Far Far Away', cat:'diary', catName:'기록·일기', kind:'앱',
+   desc:'평범한 일상 사진을 몇 초 만에 귀여운 낙서로 바꿔서 그림일기 캘린더에 모아줘요.',
+   url:'https://apps.apple.com/kr/app/id6807305133', linkLabel:'앱스토어', src:'https://ffaway.co/', srcLabel:'홈페이지'},
+  {id:'shortkr', name:'숏.한국', maker:'foreducator', cat:'tool', catName:'정리·도구', kind:'웹',
+   desc:'긴 링크를 읽기 쉬운 한글 주소로 줄이고 QR 코드도 만들어줘요.',
+   url:'http://xn--0p4b.xn--3e0b707e/', src:'https://www.threads.com/@foreducator/post/DeV70_kkVWm'},
+  {id:'photoscrub', name:'Photo Scrubber', maker:'Simon Willison', cat:'tool', catName:'정리·도구', kind:'웹',
+   desc:'사진을 올리기 전에 얼굴을 흐리게 하고 위치 정보를 지워줘요. 사진은 서버로 가지 않고 브라우저 안에서만 처리돼요.',
+   url:'https://tools.simonwillison.net/photo-scrubber', src:'https://tools.simonwillison.net/colophon', srcLabel:'제작 기록'},
+  {id:'dachaeng', name:'다챙겨때', maker:'권혁빈 · Claude Code', cat:'tool', catName:'정리·도구', kind:'웹',
+   desc:'여행 짐, 장보기, 정산을 같이 가는 사람들과 하나의 체크리스트로 챙겨요.',
+   url:'https://dachaenggyeottae.web.app/install.html?v=2', src:'https://basapal.kr/apps/dcb8254b-2edf-4f53-8cd8-59a65e97efa2'},
+  {id:'hanal', name:'한알', maker:'OOTSSU', cat:'tool', catName:'정리·도구', kind:'웹',
+   desc:'염주와 묵주를 한 알씩 밀어서 세는 카운터예요. 이렇게 좁은 쓰임새도 앱 하나가 돼요.',
+   url:'https://hanal.ootssu.com/', src:'https://basapal.kr/apps/1cd2f466-1d65-4924-9122-24a085c78623'},
+  {id:'mixcard', name:'MIXCARD', maker:'vibecodedapps.dev 소개', cat:'people', catName:'약속·사람', kind:'웹',
+   desc:'스포티파이 플레이리스트를 QR 코드가 박힌 빈티지 엽서로 인쇄해서 우편으로 보내줘요.',
+   url:'https://mixcard.me/', src:'https://vibecodedapps.dev'},
+  {id:'eventube', name:'이벤튜브', maker:'eventube.777', cat:'auto', catName:'알림·자동화', kind:'웹',
+   desc:'유튜브 경품과 추첨 이벤트를 한곳에 모아서 마감 전에 알려줘요.',
+   url:'https://eventube.kr/', src:'https://www.threads.com/@eventube.777/post/Dd3wMh_E3JH'},
+  {id:'capybobber', name:'찌바라', maker:'바사팔 소개', cat:'auto', catName:'알림·자동화', kind:'Mac 앱',
+   desc:'화면 구석에서 픽셀 카피바라가 낚시를 하다가, Claude Code 작업이 끝나면 알려줘요.',
+   url:'https://capybobber.com/', src:'https://basapal.kr/apps/3bdc70f2-efa8-4c1f-83ff-776457e39b54'},
+  {id:'naverbook', name:'네이버 예약 아침 보고', maker:'aineversleep · Claude Code', cat:'auto', catName:'알림·자동화', kind:'만든 과정',
+   desc:'네이버 예약 알림 메일을 구글 시트로 모으고, 매일 아침 슬랙으로 예약 현황을 보내요. 컴퓨터를 꺼도 돌아가요.',
+   url:'https://www.aineversleep.com/blog/naver-booking-slack-automation/', src:'https://www.aineversleep.com/blog/naver-booking-slack-automation/', linkLabel:'만든 과정 보기'},
+];
+
+document.getElementById('count').textContent = APPS.length;
+const grid = document.getElementById('grid');
+grid.innerHTML = APPS.map(a => `
+  <article class="item" data-cat="${a.cat}" data-web="${a.kind==='웹'}">
+    <a class="card" href="${a.url}" target="_blank" rel="noopener">
+      <div class="thumb">
+        <img src="media/${a.id}.jpg" data-still="media/${a.id}.jpg" data-anim="media/${a.id}.webp" alt="${a.name} 화면" loading="lazy">
+        ${a.pick ? '<span class="badge">TA Pick</span>' : ''}
+        <span class="kind">${a.kind}</span>
+      </div>
+      <div class="meta"><b>${a.maker}</b> · ${a.catName}</div>
+      <div class="name">${a.name}</div>
+      <div class="desc">${a.desc}</div>
+    </a>
+    <div class="links">
+      <a href="${a.url}" target="_blank" rel="noopener">${a.linkLabel || '써보기'} ↗</a>
+      ${a.src && a.src !== a.url ? `<a class="src" href="${a.src}" target="_blank" rel="noopener">${a.srcLabel || '출처'}</a>` : ''}
+    </div>
+  </article>`).join('');
+
+const imgs = [...grid.querySelectorAll('img')];
+const touch = matchMedia('(hover: none)').matches;
+const playAll = document.getElementById('playall');
+const setAll = on => imgs.forEach(i => i.src = on ? i.dataset.anim : i.dataset.still);
+grid.querySelectorAll('.item').forEach(it => {
+  const img = it.querySelector('img');
+  it.addEventListener('mouseenter', () => { if (!playAll.checked) img.src = img.dataset.anim; });
+  it.addEventListener('mouseleave', () => { if (!playAll.checked) img.src = img.dataset.still; });
+});
+if (touch) {
+  const io = new IntersectionObserver(es => es.forEach(e => { const i = e.target; i.src = e.isIntersecting ? i.dataset.anim : i.dataset.still; }), {threshold: .6});
+  imgs.forEach(i => io.observe(i));
+}
+playAll.addEventListener('change', () => setAll(playAll.checked));
+
+let cur = 'all';
+const webonly = document.getElementById('webonly');
+function applyFilter(){
+  grid.querySelectorAll('.item').forEach(it => {
+    const okCat = cur === 'all' || it.dataset.cat === cur;
+    const okWeb = !webonly.checked || it.dataset.web === 'true';
+    it.classList.toggle('hide', !(okCat && okWeb));
+  });
+}
+document.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+  c.classList.add('on'); cur = c.dataset.f; applyFilter();
+}));
+webonly.addEventListener('change', applyFilter);
+</script>
+</body>
+</html>
