@@ -184,9 +184,9 @@ const APPS = [
   {id:'labgui', name:'장비 제어 프로그램, 15분 만에', maker:'r/academia · 실험물리 연구실', cat:'auto', catName:'업무·연구 자동화', kind:'사례',
    desc:'장비를 연결하고 매뉴얼 PDF를 알려주면 Claude Code가 통신 방법을 찾아 제어 GUI까지 만들어요. 며칠 걸리던 일이고, 분석 코드는 말로 설명하면 Python으로 돌린대요.',
    url:'https://www.reddit.com/r/academia/comments/1rc6bt0/using_claude_code_an_ai_coding_agent_has/', linkLabel:'원문'},
-  {id:'sisyphus', name:'claude-sisyphus-grad', maker:'Hwiyeon · Claude Code', cat:'auto', catName:'업무·연구 자동화', kind:'Claude Code',
-   desc:'"지도교수가 꿈꾸던 대학원생." 밤새 실험을 돌리고, 결과를 검토하고, 다시 고치기를 반복해요. 아침이면 연구노트가 정리돼 있어요.',
-   url:'https://github.com/Hwiyeon/claude-sisyphus-grad', linkLabel:'GitHub'},
+  {id:'proteo', name:'ProteomicsAnalyzer', maker:'Jesse G. Meyer · Replit', cat:'auto', catName:'업무·연구 자동화', kind:'Python',
+   desc:'실험 데이터 표를 올리면 정규화, 통계 검정, 히트맵, PCA, 볼케이노 플롯까지 한 번에 보여주는 Streamlit 웹앱이에요. 프롬프트 두 번, 1.09달러로 기본 앱을 만들었고, 이 과정을 논문으로도 냈어요.',
+   url:'https://pmc.ncbi.nlm.nih.gov/articles/PMC12888021/', linkLabel:'논문', src:'https://github.com/xomicsdatascience/ProteomicsAnalyzer', srcLabel:'GitHub'},
 ];
 
 document.getElementById('count').textContent = APPS.length;
