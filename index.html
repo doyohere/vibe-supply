@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>하루면 만들 것 같은 바이브코딩 앱들</title>
+<title>Vibe Supply · 바이브코딩 앱 모음</title>
 <meta name="description" content="생활 속 작은 불편을 바이브코딩으로 풀어낸 웹앱과 앱 모음">
 <meta property="og:type" content="website">
-<meta property="og:title" content="이 정도면 나도 만들 수 있겠다 싶은 바이브코딩 앱">
+<meta property="og:title" content="Vibe Supply · 바이브코딩 앱 모음">
 <meta property="og:description" content="생활 속 작은 불편을 AI와 함께 풀어낸 앱 모음 · 바이브코딩 수업 참고 갤러리">
 <meta property="og:image" content="https://doyohere.github.io/vibe-supply/og.jpg">
 <meta property="og:url" content="https://doyohere.github.io/vibe-supply/">
@@ -63,8 +63,7 @@
 </header>
 
 <section class="hero">
-  <div class="kicker">불편한 걸 하나 골라서, 하루 만에</div>
-  <h1>이 정도면 나도 만들 수 있겠다 싶은 <br>바이브코딩 앱 <span id="count">29</span>개</h1>
+  <h1>바이브코딩 앱 <span id="count">27</span>개</h1>
   <p>낚시하다 금어기가 궁금했던 아저씨, 둘이 쓸 가계부가 필요했던 커플, 점심 메뉴를 못 고르던 사람들이 AI와 같이 만든 작은 앱들입니다. 카드를 누르면 바로 써보거나 앱스토어에서 볼 수 있어요.</p>
 </section>
 
@@ -76,7 +75,6 @@
   <button class="chip" data-f="town">동네·공공데이터</button>
   <button class="chip" data-f="tool">정리·도구</button>
   <button class="chip" data-f="diary">기록·일기</button>
-  <button class="chip" data-f="auto">알림·자동화</button>
   <div class="right">
     <label><input type="checkbox" id="webonly"> 웹에서 바로 되는 것만</label>
     <label><input type="checkbox" id="playall"> 전부 움직이기</label>
@@ -95,7 +93,7 @@ const APPS = [
   {id:'whatfiskok', name:'이거 잡아도 돼?', maker:'webapp_daddy', cat:'food', catName:'먹고 놀기', kind:'웹', pick:true,
    desc:'낚시하다 잡은 고기의 금어기와 금지체장을 바로 알려줘요. 코딩을 모르던 50대 낚시인이 직접 만들었어요.',
    url:'https://whatfiskok.vercel.app', src:'https://www.threads.com/@unnnyong/post/DbnFzxikoF_'},
-  {id:'pick', name:'오늘 뭐 먹지', maker:'바이브마트 · Claude Code', cat:'food', catName:'먹고 놀기', kind:'웹', pick:true,
+  {id:'pick', name:'오늘 뭐 먹지', maker:'바이브마트 · Claude Code', cat:'food', catName:'먹고 놀기', kind:'웹',
    desc:'음식 754가지에서 뽑고, 후보가 있으면 룰렛으로 정해요. 결과가 싫으면 먹고 싶은 게 따로 있다는 뜻이래요.',
    url:'https://vibemart.kr/pick.html', src:'https://vibemart.kr/about.html'},
   {id:'boombim', name:'지하철 붐빔예보', maker:'bridge_node_', cat:'town', catName:'동네·공공데이터', kind:'웹', pick:true,
@@ -110,7 +108,7 @@ const APPS = [
   {id:'subcalc', name:'구독료 계산기', maker:'바이브마트 · Claude Code', cat:'money', catName:'돈·정산', kind:'웹',
    desc:'넷플릭스, 쿠팡 와우, ChatGPT를 누르다 보면 1년 총액이 나와요. 결제일 알림을 폰 캘린더에 넣을 수도 있어요.',
    url:'https://vibemart.kr/subcalc.html', src:'https://vibemart.kr/about.html'},
-  {id:'splitpeak', name:'split peak', maker:'John Kim · Claude Code', cat:'money', catName:'돈·정산', kind:'웹', pick:true,
+  {id:'splitpeak', name:'split peak', maker:'John Kim · Claude Code', cat:'money', catName:'돈·정산', kind:'웹',
    desc:'여행이나 룸메이트 사이의 돈을 한 번에 정산해요. 통화가 섞여도 되고, 샘플 여행으로 바로 체험할 수 있어요.',
    url:'https://www.splitpeak.me/', src:'https://basapal.kr/apps/3a09d8dd-d0d1-4896-b6e1-23e64e0cff00'},
   {id:'chalkak', name:'한집가계부', maker:'hanjip_budget', cat:'money', catName:'돈·정산', kind:'앱',
@@ -125,9 +123,9 @@ const APPS = [
   {id:'nori', name:'노리', maker:'오지우 · Claude Code', cat:'people', catName:'약속·사람', kind:'웹',
    desc:'바다 건너 일본의 누군가와 하루 세 번 엽서를 주고받아요. 사진 한 장과 한 줄이면 돼요.',
    url:'https://noriapp-web.pages.dev/', src:'https://basapal.kr/apps/3c1b04b6-6907-4be1-82aa-b1d131cba0e9'},
-  {id:'byeol', name:'곁별', maker:'LUCA MOON · Claude Code', cat:'people', catName:'약속·사람', kind:'웹',
-   desc:'생일을 넣으면 내 오행 정령이 나오고, 곁에 있는 사람들이 별자리처럼 떠요.',
-   url:'https://vaulted-bus-346411.web.app/byeol', src:'https://basapal.kr/apps/2482a0eb-183b-45e0-9585-5df5bf3152cc'},
+  {id:'planet', name:'오행성', maker:'5planet.space', cat:'people', catName:'약속·사람', kind:'웹',
+   desc:'생년월일을 넣으면 사주 여덟 글자대로 나무, 꽃, 바위, 바다가 자라는 3D 행성이 생겨요. 친구를 초대해 방명록도 받을 수 있어요. AI와 하루 만에 만들었대요.',
+   url:'https://5planet.space/', src:'https://5planet.space/', srcLabel:'만든 이야기'},
   {id:'tastee', name:'TASTEE', maker:'tastee.app', cat:'food', catName:'먹고 놀기', kind:'앱',
    desc:'가본 식당을 "A vs B, 어디가 더 좋았어?" 이상형 월드컵처럼 고르기만 하면 나만의 맛집 순위가 매겨져요.',
    url:'https://apps.apple.com/kr/app/id6756393828', linkLabel:'앱스토어', src:'https://www.threads.com/@tastee.app'},
@@ -149,7 +147,7 @@ const APPS = [
   {id:'memory', name:'me:mory', maker:'yongjae.builds', cat:'people', catName:'약속·사람', kind:'앱',
    desc:'새우 알레르기, 갖고 싶다던 카드지갑처럼 그 사람에 대해 적어두면, 약속 날 만나기 전에 먼저 꺼내줘요.',
    url:'https://apps.apple.com/kr/app/id6790031020', linkLabel:'앱스토어', src:'https://www.threads.com/@yongjae.builds/post/DbnJ8_pgXny'},
-  {id:'oneyear', name:'One Year: Daily Journal', maker:'Wind Down Studio', cat:'diary', catName:'기록·일기', kind:'앱',
+  {id:'oneyear', name:'One Year: Daily Journal', maker:'Wind Down Studio', cat:'diary', catName:'기록·일기', kind:'앱', pick:true,
    desc:'하루에 기억 하나를 적으면 손으로 그린 식물이 하나씩 자라서, 1년이 지나면 기억의 정원이 돼요.',
    url:'https://apps.apple.com/kr/app/id6740510762', linkLabel:'앱스토어', src:'https://oneyear.garden/', srcLabel:'홈페이지'},
   {id:'dood', name:'DOOD', maker:'Far Far Away', cat:'diary', catName:'기록·일기', kind:'앱',
@@ -170,15 +168,9 @@ const APPS = [
   {id:'mixcard', name:'MIXCARD', maker:'만든 사람 비공개', cat:'people', catName:'약속·사람', kind:'웹',
    desc:'스포티파이 플레이리스트를 QR 코드가 박힌 빈티지 엽서로 인쇄해서 우편으로 보내줘요.',
    url:'https://mixcard.me/', src:'https://vibecodedapps.dev'},
-  {id:'eventube', name:'이벤튜브', maker:'eventube.777', cat:'auto', catName:'알림·자동화', kind:'웹',
-   desc:'유튜브 경품과 추첨 이벤트를 한곳에 모아서 마감 전에 알려줘요.',
-   url:'https://eventube.kr/', src:'https://www.threads.com/@eventube.777/post/Dd3wMh_E3JH'},
-  {id:'capybobber', name:'찌바라', maker:'Capybobber', cat:'auto', catName:'알림·자동화', kind:'Mac 앱',
+  {id:'capybobber', name:'찌바라', maker:'Capybobber', cat:'tool', catName:'정리·도구', kind:'Mac 앱',
    desc:'화면 구석에서 픽셀 카피바라가 낚시를 하다가, Claude Code 작업이 끝나면 알려줘요.',
    url:'https://capybobber.com/', src:'https://basapal.kr/apps/3bdc70f2-efa8-4c1f-83ff-776457e39b54'},
-  {id:'naverbook', name:'네이버 예약 아침 보고', maker:'aineversleep · Claude Code', cat:'auto', catName:'알림·자동화', kind:'만든 과정',
-   desc:'네이버 예약 알림 메일을 구글 시트로 모으고, 매일 아침 슬랙으로 예약 현황을 보내요. 컴퓨터를 꺼도 돌아가요.',
-   url:'https://www.aineversleep.com/blog/naver-booking-slack-automation/', src:'https://www.aineversleep.com/blog/naver-booking-slack-automation/', linkLabel:'만든 과정 보기'},
 ];
 
 document.getElementById('count').textContent = APPS.length;
