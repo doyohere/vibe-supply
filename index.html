@@ -210,12 +210,27 @@ grid.innerHTML = APPS.map(a => `
   </article>`).join('');
 
 const imgs = [...grid.querySelectorAll('img')];
+// if an animated file ever fails, fall back to the still image instead of a broken icon
+imgs.forEach(i => i.addEventListener('error', () => { if (i.getAttribute('src') !== i.dataset.still) i.src = i.dataset.still; }));
+// warm the cache so hover swaps are instant (desktop only, one by one after load)
+if (!matchMedia('(hover: none)').matches) {
+  window.addEventListener('load', () => {
+    let k = 0;
+    const next = () => { if (k >= imgs.length) return; const p = new Image(); p.onload = p.onerror = () => setTimeout(next, 60); p.src = imgs[k++].dataset.anim; };
+    setTimeout(next, 800);
+  });
+}
 const touch = matchMedia('(hover: none)').matches;
 const playAll = document.getElementById('playall');
 const setAll = on => imgs.forEach(i => i.src = on ? i.dataset.anim : i.dataset.still);
 grid.querySelectorAll('.item').forEach(it => {
   const img = it.querySelector('img');
-  it.addEventListener('mouseenter', () => { if (!playAll.checked) img.src = img.dataset.anim; });
+  it.addEventListener('mouseenter', () => {
+    if (playAll.checked) return;
+    const pre = new Image();
+    pre.onload = () => { if (it.matches(':hover')) img.src = img.dataset.anim; };
+    pre.src = img.dataset.anim;
+  });
   it.addEventListener('mouseleave', () => { if (!playAll.checked) img.src = img.dataset.still; });
 });
 if (touch) {
