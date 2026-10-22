@@ -63,12 +63,13 @@
 </header>
 
 <section class="hero">
-  <h1>바이브코딩 앱 <span id="count">27</span>개</h1>
+  <h1>바이브코딩 앱 <span id="count">32</span>개</h1>
   <p>낚시하다 금어기가 궁금했던 아저씨, 둘이 쓸 가계부가 필요했던 커플, 점심 메뉴를 못 고르던 사람들이 AI와 같이 만든 작은 앱들입니다. 카드를 누르면 바로 써보거나 앱스토어에서 볼 수 있어요.</p>
 </section>
 
 <div class="bar"><div class="bar-in" id="chips">
   <button class="chip on" data-f="all">전체</button>
+  <button class="chip" data-f="auto">업무·연구 자동화</button>
   <button class="chip" data-f="food">먹고 놀기</button>
   <button class="chip" data-f="people">약속·사람</button>
   <button class="chip" data-f="money">돈·정산</button>
@@ -171,6 +172,21 @@ const APPS = [
   {id:'capybobber', name:'찌바라', maker:'Capybobber', cat:'tool', catName:'정리·도구', kind:'Mac 앱',
    desc:'화면 구석에서 픽셀 카피바라가 낚시를 하다가, Claude Code 작업이 끝나면 알려줘요.',
    url:'https://capybobber.com/', src:'https://basapal.kr/apps/3bdc70f2-efa8-4c1f-83ff-776457e39b54'},
+  {id:'arxivtrack', name:'arXiv 논문 트래커', maker:'Giseop Kim · ChatGPT', cat:'auto', catName:'업무·연구 자동화', kind:'Python',
+   desc:'매일 새로 올라온 arXiv 논문을 자동으로 모아 DB에 쌓고, 키워드로 찾아보는 웹앱까지 만들었어요. "ChatGPT한테 이렇게 하고 싶다고 설명하니 만들어줬다"고 직접 썼어요.',
+   url:'https://gsk1m.github.io/productivity/2023/03/18/arxiv-searcher-automation.html', linkLabel:'만든 과정', src:'https://github.com/gisbi-kim/Daily-Arxiv-Tracking-Automation', srcLabel:'GitHub'},
+  {id:'namingpaper', name:'namingpaper', maker:'DanTsai0903', cat:'auto', catName:'업무·연구 자동화', kind:'Python',
+   desc:'다운로드 폴더에 쌓인 "1-s2.0-...-main.pdf" 같은 논문 파일을 "저자, (연도, 저널), 제목.pdf"로 한 번에 바꿔줘요. 기본이 미리보기 모드라 안전해요.',
+   url:'https://github.com/DanTsai0903/namingpaper', linkLabel:'GitHub'},
+  {id:'hwpxkit', name:'hwpx-kit', maker:'6aneffy · Claude Code', cat:'auto', catName:'업무·연구 자동화', kind:'Python',
+   desc:'"이 양식에 채워줘" 한마디로 한글(HWPX) 서식을 깨지 않고 채워요. 엑셀 명단으로 위촉장 30부 만들기, 금액 한글 병기, 공문 표기 검수까지 한컴 설치 없이 돼요.',
+   url:'https://github.com/6aneffy/hwpx-kit', linkLabel:'GitHub'},
+  {id:'labgui', name:'장비 제어 프로그램, 15분 만에', maker:'r/academia · 실험물리 연구실', cat:'auto', catName:'업무·연구 자동화', kind:'사례',
+   desc:'장비를 연결하고 매뉴얼 PDF를 알려주면 Claude Code가 통신 방법을 찾아 제어 GUI까지 만들어요. 며칠 걸리던 일이고, 분석 코드는 말로 설명하면 Python으로 돌린대요.',
+   url:'https://www.reddit.com/r/academia/comments/1rc6bt0/using_claude_code_an_ai_coding_agent_has/', linkLabel:'원문'},
+  {id:'sisyphus', name:'claude-sisyphus-grad', maker:'Hwiyeon · Claude Code', cat:'auto', catName:'업무·연구 자동화', kind:'Claude Code',
+   desc:'"지도교수가 꿈꾸던 대학원생." 밤새 실험을 돌리고, 결과를 검토하고, 다시 고치기를 반복해요. 아침이면 연구노트가 정리돼 있어요.',
+   url:'https://github.com/Hwiyeon/claude-sisyphus-grad', linkLabel:'GitHub'},
 ];
 
 document.getElementById('count').textContent = APPS.length;
